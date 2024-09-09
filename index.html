@@ -4,9 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="playGame.js"></script>
+    <script src="playGame.js" defer></script>
 </head>
 <body>
-    
+    <h1>Rock, Paper, Scissors</h1>
+    <p><span>winning Requirement:</span><br>earn points by beating the bot<br> and first to five wins</p>
+<h3>choose one of the options</h3>
+    <div id="block">
+            <!-- add images to the buttons 
+            add ids to the buttons and then have a selector for the options-->
+            <button id="rock">rock</button>
+            <button id="paper">paper</button>
+            <button id="scissor">Scissor</button>
+        </div>
+        <div id="scoreB">
+        <div id ="user">
+            <h4>Player Score:<span id="userS"></span></h4>
+
+        </div>
+
+        <div id ="computer">
+            <h4>Computer Score: <span id="compS"></span></h4>
+        </div>
+        <div id="reset">
+
+        </div>
+    </div>
 </body>
 </html>

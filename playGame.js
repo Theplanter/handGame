@@ -1,74 +1,91 @@
-let userScore=1, comScore =1
 
-function getRandomhand(){
-    //this creates a random number between 1 and 3 
-    let comput = Math.floor(Math.random() * (3 - 1 +1)+1)
+let userScore=0
+let comScore=0
+let tieCount=0
 
-    //this compares to see what the number will become
-    if(comput===1){
-        return "rock"
-    }else if(comput===2){
-        return "paper"
-    }else{
-        return "scissor"
-    }
+const hand = ['rock','paper','scissor']
+
+const PScore = document.querySelector("#userS")  
+const CScore = document.querySelector("#compS")  
+const rest = document.querySelector("#reset")  
+
+PScore.innerHTML = userScore
+CScore.innerHTML = comScore
 
 
-}
-function getUser(){
-    /*this prompt the user until there is a correct input
-    when the correct one is inputted then the result is returned*/ 
-    let user = prompt("Type Rock, Paper, or Scissors, to see if you can beat the computer").toLowerCase();
-    let thing = false
-    while(thing == false)
-        {
-    if(user==="rock"||user==="paper" ||user==="scissor")
-    {
-        thing = true
-        return user
-    }else{
-        user = prompt("Type Rock, Paper, or Scissors, to see if you can beat the computer")
-    }
-}
-}
+
+
+    //the div container "block" gets all the buttons in the div
+const block = document.querySelector("#block")
+
+//when the button is click the event listener is activated 
+block.addEventListener("click", (event)=>{
+    
+    let target =event.target
+    let comput = hand[Math.floor(Math.random() * 3)]
+    console.log(comput)
+    
+    switch(target.id){
+       
+        case'rock':
+        console.log(target.id)
+        return playGame(target.id,comput)
+        
+        case'paper':
+        console.log(target.id) 
+        return playGame(target.id,comput)
+        
+        case'scissor':
+        console.log(target.id)
+        return playGame(target.id,comput)
+    }}
+    
+  
+)
+
+
+
 function playGame(userI, comI){
 /*this compares the user and the computer input the who won the round
 whoever wins gets their scores increased*/ 
+
     if(userI==="rock" && comI==="scissor"||userI==="paper" && comI==="rock" ||
         userI==="scissor" && comI==="paper"){
-            console.log(`user won that round`)
+        
             userScore++
-        }else if(comI===userI){
-                
+            console.log(`user won that round `+userScore)
+            PScore.innerHTML = userScore
+        
+        }else if(comI==userI){
+               //add tie counter
                 console.log("there was a tie")            
+        
         }else{
-            console.log(`computer won that round`)
             comScore++
+            console.log(`computer won that round ` + comScore)
+            CScore.innerHTML = comScore
         }
+        //when one of the players get to five the gameover function is pulled
+        if(userScore===5){
+            gameOver()
+        }else if(comScore===5){
+            gameOver()
+        }
+    }
 
-}
-/*the while loop stays active until the counter hits 5
-while the loop is active it actives all the functions*/
-let counter =1
-while(counter<=5)
-    {
-        console.log(`round ${counter}`)
-let com = getRandomhand()
-console.log(com)
+    function gameOver(){
 
-let user = getUser()
-console.log(userScore)
-playGame(user , com);
-counter++
-}
-/*the if statement checks to see who has won the whole game*/
-if(userScore>comScore){
-    console.log("User as won the game")
+        if(userScore>comScore){
 
-}else if(comScore>userScore)
-    {
-    console.log("computer as won the game")
+            document.getElementById("rock").setAttribute("disabled","disabled")
+            document.getElementById("paper").setAttribute("disabled","disabled")
+            document.getElementById("scissor").setAttribute("disabled","disabled")
 
-}else{
-    console.log("the game is a draw")
+    }else if(comScore>userScore){
+        document.getElementById("rock").setAttribute("disabled","disabled")
+        document.getElementById("paper").setAttribute("disabled","disabled")
+        document.getElementById("scissor").setAttribute("disabled","disabled")
+    }
+    //then addeventlistener to enable other buttons, disable reset button visibility and reset score
+    console.log("game over")
 }
