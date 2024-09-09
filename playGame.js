@@ -7,8 +7,9 @@ const hand = ['rock','paper','scissor']
 
 const PScore = document.querySelector("#userS")  
 const CScore = document.querySelector("#compS")  
-const rest = document.querySelector("#reset")  
+const TScore = document.querySelector("#tieS")  
 
+TScore.innerHTML = tieCount
 PScore.innerHTML = userScore
 CScore.innerHTML = comScore
 
@@ -58,8 +59,10 @@ whoever wins gets their scores increased*/
         
         }else if(comI==userI){
                //add tie counter
+               tieCount++
                 console.log("there was a tie")            
-        
+                TScore.innerHTML = tieCount
+
         }else{
             comScore++
             console.log(`computer won that round ` + comScore)
@@ -72,20 +75,47 @@ whoever wins gets their scores increased*/
             gameOver()
         }
     }
+    const rest = document.querySelector("#reset")  
+    const rock = document.getElementById("rock")
+    const paper = document.getElementById("paper")
+    const scissor = document.getElementById("scissor")
+
 
     function gameOver(){
 
         if(userScore>comScore){
 
-            document.getElementById("rock").setAttribute("disabled","disabled")
-            document.getElementById("paper").setAttribute("disabled","disabled")
-            document.getElementById("scissor").setAttribute("disabled","disabled")
+            rock.disabled = true
+            paper.disabled = true
+            scissor.disabled = true
 
-    }else if(comScore>userScore){
-        document.getElementById("rock").setAttribute("disabled","disabled")
-        document.getElementById("paper").setAttribute("disabled","disabled")
-        document.getElementById("scissor").setAttribute("disabled","disabled")
+        }else if(comScore>userScore){
+            rock.disabled = true
+            paper.disabled = true
+            scissor.disabled = true
+        }
+
+
+        const resetting = document.createElement("button")
+        resetting.textContent = "Game Reset"
+        rest.appendChild(resetting)
+        
+        resetting.addEventListener("click", ()=>  {
+            rock.disabled = false
+            paper.disabled = false
+            scissor.disabled = false
+
+
+            
+            userScore = 0
+            comScore = 0
+            tieCount = 0
+            TScore.innerHTML = tieCount
+            CScore.innerHTML = comScore
+            PScore.innerHTML = userScore
+            resetting.remove()
+            console.log("game over")
+
+        });
+        //then addeventlistener to enable other buttons, disable reset button visibility and reset score
     }
-    //then addeventlistener to enable other buttons, disable reset button visibility and reset score
-    console.log("game over")
-}
