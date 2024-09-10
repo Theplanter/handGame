@@ -1,0 +1,54 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: rgb(252, 71, 71);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+div{
+    background-color: aliceblue;
+    box-sizing: border-box;
+    width: 1000px;
+    align-self: center;
+}
+h1{
+    font-weight: bold;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    padding-bottom: 15px;
+}
+p{
+    font-family: 'Courier New', Courier, monospace;
+    padding-bottom: 20px;
+    font-weight: 900;
+    font-size: 20px;
+
+}
+
+#block{
+display: flex;
+flex-direction: row;
+justify-content: center;   
+margin: 15px 0 15px 0;
+}
+#scoreB{
+    display: flex;
+    flex-direction: row;
+    gap: 35px;
+    padding: 0 150px 0 150px;
+}
+
+button{
+    margin: 5px;
+    padding: 5px 10px 5px 10px;
+    font-size: 20px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+}
+#results{
+    font-size: 25px;
+    margin-bottom: 15px;
+}

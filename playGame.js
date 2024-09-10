@@ -41,9 +41,11 @@ block.addEventListener("click", (event)=>{
         return playGame(target.id,comput)
     }}
     
+
   
 )
 
+const result = document.querySelector("#results")  
 
 
 function playGame(userI, comI){
@@ -56,6 +58,9 @@ whoever wins gets their scores increased*/
             userScore++
             console.log(`user won that round `+userScore)
             PScore.innerHTML = userScore
+
+            result.textContent = `users ${userI} beats robots ${comI}`
+        
         
         }else if(comI==userI){
                //add tie counter
@@ -67,7 +72,12 @@ whoever wins gets their scores increased*/
             comScore++
             console.log(`computer won that round ` + comScore)
             CScore.innerHTML = comScore
+
+            result.textContent = ` robots ${comI} beats users ${userI}`
+            
+
         }
+       
         //when one of the players get to five the gameover function is pulled
         if(userScore===5){
             gameOver()
@@ -80,16 +90,20 @@ whoever wins gets their scores increased*/
     const paper = document.getElementById("paper")
     const scissor = document.getElementById("scissor")
 
-
+//when this function is called the hand buttons are disabled
+//and a reset button is created
     function gameOver(){
 
         if(userScore>comScore){
+            result.textContent = `The winner is the Player`
 
             rock.disabled = true
             paper.disabled = true
             scissor.disabled = true
 
         }else if(comScore>userScore){
+            result.textContent = `The winner is the Robot`
+
             rock.disabled = true
             paper.disabled = true
             scissor.disabled = true
@@ -100,6 +114,8 @@ whoever wins gets their scores increased*/
         resetting.textContent = "Game Reset"
         rest.appendChild(resetting)
         
+        //when the reset button is pressed the scores are set to zero,
+        // the reset button get deleted, and the hand buttons are reenable
         resetting.addEventListener("click", ()=>  {
             rock.disabled = false
             paper.disabled = false
@@ -110,6 +126,8 @@ whoever wins gets their scores increased*/
             userScore = 0
             comScore = 0
             tieCount = 0
+            result.textContent = ``
+
             TScore.innerHTML = tieCount
             CScore.innerHTML = comScore
             PScore.innerHTML = userScore
@@ -117,5 +135,5 @@ whoever wins gets their scores increased*/
             console.log("game over")
 
         });
-        //then addeventlistener to enable other buttons, disable reset button visibility and reset score
+       
     }
